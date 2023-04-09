@@ -33,10 +33,20 @@ defmodule Servy.Recurse do
   defp optimized_triple([], triple_list) do
     triple_list |> Enum.reverse()
   end
+
+  def my_map([head | tail], function) do
+    [function.(head) | my_map(tail, function)]
+  end
+
+  def my_map([], _fun), do: []
 end
 
-alias Servy.Recurse
-Recurse.loopy([1, 2, 3, 4, 5])
-Recurse.sum([1, 2, 3, 4, 5], 0)
-IO.inspect(Recurse.triple([1, 2, 3, 4, 5]))
-IO.inspect(Recurse.optimized_triple([1, 2, 3, 4, 5]))
+# alias Servy.Recurse
+# Recurse.loopy([1, 2, 3, 4, 5])
+# Recurse.sum([1, 2, 3, 4, 5], 0)
+# IO.inspect(Recurse.triple([1, 2, 3, 4, 5]))
+# IO.inspect(Recurse.optimized_triple([1, 2, 3, 4, 5]))
+# nums = [1, 2, 3, 4, 5]
+# Recurse.my_map(nums, &(&1 * 2)) |> IO.inspect()
+# Recurse.my_map(nums, &(&1 * 4)) |> IO.inspect()
+# Recurse.my_map(nums, &(&1 * 5)) |> IO.inspect()
